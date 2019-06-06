@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.5"
 services:
   master:
     container_name: jenkins-master
@@ -11,3 +11,5 @@ services:
   slave:
     build: .
     container_name: jenkins-slave
+volumes:
+  jenkins_home:

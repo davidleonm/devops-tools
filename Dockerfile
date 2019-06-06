@@ -1,9 +1,10 @@
 FROM python:3.7.3-alpine3.9
+MAINTAINER David Leon <david.leon.m@gmail.com>
 
-RUN apt-get update && apt-get install -y openssh-server
+RUN apk update && apk add openssh-server
 RUN mkdir /var/run/sshd
 RUN echo 'root:123456' | chpasswd
-RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' -i /etc/ssh/sshd_config
 
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
