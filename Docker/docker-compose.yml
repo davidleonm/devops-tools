@@ -1,8 +1,10 @@
 version: "3.5"
 services:
   master:
+    depends_on:
+      - slave
     container_name: jenkins-master
-    image: jenkins/jenkins:lts
+    image: jenkins/jenkins:lts-alpine
     ports:
       - "8080:8080"
       - "50000:50000"
@@ -11,5 +13,7 @@ services:
   slave:
     build: .
     container_name: jenkins-slave
+    ports:
+      - "2222:2222"
 volumes:
   jenkins_home:
