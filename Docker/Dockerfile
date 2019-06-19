@@ -33,4 +33,5 @@ USER jenkins
 ENV PATH="/usr/local/bin/:${PATH}"
 
 # Start sshd
+USER root
 CMD ["/usr/sbin/sshd", "-D"]
