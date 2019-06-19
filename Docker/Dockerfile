@@ -9,6 +9,7 @@ RUN apk update && \
 
 # ENV Variables
 ENV JAVA_HOME /usr
+ENV PATH="/usr/local/bin/:${PATH}"
 
 # Clean apk cache
 RUN rm -rf /var/cache/apk/*

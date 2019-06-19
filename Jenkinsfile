@@ -5,7 +5,7 @@ pipeline {
     stage('Execute unit tests') {
       steps {
         script {
-          sh 'python --version'
+          sh 'python PythonHelloWorld/tests/app_unit_tests.py'
         }
       }
     }
