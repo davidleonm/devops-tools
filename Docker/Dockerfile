@@ -4,8 +4,8 @@ MAINTAINER David Leon <david.leon.m@gmail.com>
 # Update packages and install openssh-server and java
 RUN apk update && \
     apk add openssh && \
-    apk fetch openjdk8 && \
-    apk add openjdk8
+    apk fetch openjdk8 && apk add openjdk8 && \
+    apk add git
 
 # ENV Variables
 ENV JAVA_HOME /usr
