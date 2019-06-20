@@ -28,10 +28,5 @@ RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key
 # Configured port for ssh connections
 EXPOSE 2222
 
-# ENV Variables
-USER jenkins
-ENV PATH="/usr/local/bin/:${PATH}"
-
 # Start sshd
-USER root
 CMD ["/usr/sbin/sshd", "-D"]
