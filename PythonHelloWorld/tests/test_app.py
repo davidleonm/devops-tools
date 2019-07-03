@@ -1,6 +1,6 @@
 import unittest
 
-from HelloWorldFlask import HelloWorldFlask
+from HelloWorldFlask.hello_world import HelloWorldFlask
 
 
 class AppUnitTests(unittest.TestCase):
