@@ -7,7 +7,7 @@ pipeline {
         script {
           // Clean & Prepare new python environment
           sh 'rm -rf ENV'
-          sh '/usr/bin/virtualenv --no-site-packages ENV'
+          sh 'virtualenv --no-site-packages ENV'
 
           sh 'ENV/bin/pip install --upgrade pip'
           sh 'ENV/bin/pip install -r ${WORKSPACE}/PythonHelloWorld/requirements.txt'
