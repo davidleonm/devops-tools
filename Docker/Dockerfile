@@ -6,6 +6,7 @@ RUN apk update && \
     apk add openssh && \
     apk fetch openjdk8 && apk add openjdk8 && \
     apk add git
+    apk add py3-virtualenv
 
 # Clean apk cache
 RUN rm -rf /var/cache/apk/*
