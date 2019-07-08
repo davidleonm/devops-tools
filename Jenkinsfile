@@ -18,7 +18,7 @@ pipeline {
     stage('Execute unit tests') {
       steps {
         script {
-          sh "python -m unittest discover ${WORKSPACE}/PythonHelloWorld -v"
+          sh "ENV/bin/python -m unittest discover ${WORKSPACE}/PythonHelloWorld -v"
         }
       }
     }
