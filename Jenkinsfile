@@ -5,7 +5,7 @@ pipeline {
     stage('Execute unit tests') {
       steps {
         script {
-          sh 'python -m unittest discover -v'
+          sh "python -m unittest discover ${WORKSPACE} -v"
         }
       }
     }
