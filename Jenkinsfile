@@ -41,9 +41,7 @@ pipeline {
 }
 
 def SetBuildStatus(String status) {
-  curl "https://api.GitHub.com/repos/davidleonm/jenkins-test/statuses/${GIT_COMMIT}?access_token=0ce9abc63086905feaae064f6fe2b005deae95c3" \
-  -H "Content-Type: application/json" \
-  -X POST \
-  -d "{\"state\": \"${status}\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"http://192.168.1.69:8080/job/<JenkinsProjectName>/${BUILD_NUMBER}/console\"}"
-
+  sh "curl 'https://api.GitHub.com/repos/davidleonm/jenkins-test/statuses/${GIT_COMMIT}?access_token=0ce9abc63086905feaae064f6fe2b005deae95c3' \
+       -H 'Content-Type: application/json' \
+       -X POST -d '{\"state\": \"${status}\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"http://192.168.1.69:8080/job/<JenkinsProjectName>/${BUILD_NUMBER}/console\"}'"
 }
