@@ -6,6 +6,7 @@ RUN apk add --no-cache openssh \
     openjdk8 \
     git \
     py3-virtualenv \
+    libcurl \
     curl
 
 # Copy configuration for sshd
