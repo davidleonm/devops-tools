@@ -1,6 +1,10 @@
 pipeline {
   agent { label 'slave' }
 
+  environment {
+      GITHUB_CREDENTIALS = credentials('08e8a270-f348-468e-8017-c1eaef642cd7')
+  }
+
   stages {
     stage('Prepare Python ENV') {
       steps {
@@ -41,8 +45,7 @@ pipeline {
 }
 
 def SetBuildStatus(String status) {
-  sh "curl -H 'Authorization: token \"0ce9abc63086905feaae064f6fe2b005deae95c3\"' \
-       -H 'Content-Type: application/json' \
-       -X POST 'https://api.GitHub.com/repos/davidleonm/jenkins-test/statuses/${GIT_COMMIT}' \
+  sh "curl -H 'Content-Type: application/json' \
+      'https://"${GITHUB_CREDENTIALS_USR}${GITHUB_CREDENTIALS_PSW}@api.github.com/repos/davidleonm/jenkins-test/statuses/${GIT_COMMIT}' \
        -d '{\"state\": \"${status}\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"${BUILD_URL}\"}'"
 }
