@@ -46,6 +46,6 @@ pipeline {
 
 def SetBuildStatus(String status) {
   sh "curl -H 'Content-Type: application/json' \
-      'https://\"${GITHUB_CREDENTIALS_USR}\":\"${GITHUB_CREDENTIALS_PSW}\"@api.github.com/repos/davidleonm/jenkins-test/statuses/\"${GIT_COMMIT}\""' \
+      'https://${GITHUB_CREDENTIALS_USR}:${GITHUB_CREDENTIALS_PSW}@api.github.com/repos/davidleonm/jenkins-test/statuses/${GIT_COMMIT}' \
        -d '{\"state\": \"${status}\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"${BUILD_URL}\"}'"
 }
