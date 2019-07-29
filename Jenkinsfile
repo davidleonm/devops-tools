@@ -45,7 +45,7 @@ pipeline {
 }
 
 def SetBuildStatus(String status) {
-  sh "curl -H 'Authorization: Bearer ${GITHUB_TOKEN_PSW}' \
+  sh "curl -H 'Authorization: Bearer ${GITHUB_TOKEN}' \
       -H 'Content-Type: application/json' \
       -X POST 'https://api.github.com/repos/davidleonm/jenkins-test/statuses/${GIT_COMMIT}' \
       -d '{\"state\": \"${status}\",\"context\": \"continuous-integration/jenkins\", \"description\": \"Jenkins\", \"target_url\": \"${BUILD_URL}\"}'"
