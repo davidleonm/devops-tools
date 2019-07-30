@@ -2,16 +2,11 @@ FROM python:3.7.3-alpine3.9
 MAINTAINER David Leon <david.leon.m@gmail.com>
 
 # Update packages and install openssh-server and java
-RUN apk update && \
-    apk add openssh && \
-    apk fetch openjdk8 && apk add openjdk8 && \
-    apk add git
-
-# ENV Variables
-ENV JAVA_HOME /usr
-
-# Clean apk cache
-RUN rm -rf /var/cache/apk/*
+RUN apk add --no-cache openssh \
+    openjdk8 \
+    git \
+    py3-virtualenv \
+    curl
 
 # Copy configuration for sshd
 COPY sshd_config /etc/ssh/sshd_config
