@@ -24,17 +24,21 @@ pipeline {
     stage('Execute unit tests') {
       steps {
         script {
-          sh "ENV/bin/python -m unittest discover ${WORKSPACE}/PythonHelloWorld -v"
+          sh "ENV/bin/python -m unittest discover -s ${WORKSPACE}/PythonHelloWorld"
         }
       }
     }
-    
+
     stage('SonarQube analysis') {
       environment {
         def scannerHome = tool 'Sonarqube'
       }
       
       steps {
+        script {
+          sh "coverage run -m unittest discover -s ${WORKSPACE}/PythonHelloWorld"
+          sh "coverage xml -i"
+        }
         withSonarQubeEnv('Sonarqube') {
           sh "${scannerHome}/bin/sonar-scanner"
         }
