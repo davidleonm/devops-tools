@@ -36,8 +36,8 @@ pipeline {
       
       steps {
         script {
-          sh "coverage run -m unittest discover -s ${WORKSPACE}/PythonHelloWorld"
-          sh "coverage xml -i"
+          sh "ENV/bin/coverage run -m unittest discover -s ${WORKSPACE}/PythonHelloWorld"
+          sh "ENV/bin/coverage xml -i"
         }
         withSonarQubeEnv('Sonarqube') {
           sh "${scannerHome}/bin/sonar-scanner"
