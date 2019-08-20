@@ -3,6 +3,7 @@ services:
   jenkins-master:
     depends_on:
       - jenkins-slave
+      - sonarqube
     container_name: jenkins-master
     image: jenkins/jenkins:lts-alpine
     ports:

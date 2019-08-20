@@ -28,6 +28,13 @@ pipeline {
         }
       }
     }
+    
+    stage('SonarQube analysis') {
+      def scannerHome = tool 'Sonarqube';
+      withSonarQubeEnv('Sonarqube') {
+        sh "${scannerHome}/bin/sonar-scanner"
+      }
+    }
   }
   post {
     success {
