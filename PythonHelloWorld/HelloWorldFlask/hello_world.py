@@ -20,6 +20,50 @@ class HelloWorldFlask(object):
     def forbidden():
         return 'Forbidden site!'
 
+    @staticmethod
+    def forbidden2():
+        return 'Forbidden site!'
+
+    @staticmethod
+    def forbidden3():
+        return 'Forbidden site!'
+
+    @staticmethod
+    def forbidden4():
+        return 'Forbidden site!'
+
+    @staticmethod
+    def forbidden5():
+        return 'Forbidden site!'
+
+    @staticmethod
+    def forbidden6():
+        return 'Forbidden site!'
+
+    @staticmethod
+    def forbidden7():
+        return 'Forbidden site!'
+
+    @staticmethod
+    def forbidden8():
+        return 'Forbidden site!'
+
+    @staticmethod
+    def forbidden9():
+        return 'Forbidden site!'
+
+    @staticmethod
+    def forbidden10():
+        return 'Forbidden site!'
+
+    @staticmethod
+    def forbidden11():
+        return 'Forbidden site!'
+
+    @staticmethod
+    def forbidden12():
+        return 'Forbidden site!'
+
     def testing_client(self):
         self.app.testing = True
         return self.app.test_client()
