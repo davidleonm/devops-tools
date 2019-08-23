@@ -21,388 +21,48 @@ class HelloWorldFlask(object):
         return 'Forbidden site!'
 
     @staticmethod
-    def forbidden():
+    def forbidden2():
         return 'Forbidden site!'
 
     @staticmethod
-    def forbidden():
+    def forbidden3():
         return 'Forbidden site!'
 
     @staticmethod
-    def forbidden():
+    def forbidden4():
         return 'Forbidden site!'
 
     @staticmethod
-    def forbidden():
+    def forbidden5():
         return 'Forbidden site!'
 
     @staticmethod
-    def forbidden():
+    def forbidden6():
         return 'Forbidden site!'
 
     @staticmethod
-    def forbidden():
+    def forbidden7():
         return 'Forbidden site!'
 
     @staticmethod
-    def forbidden():
+    def forbidden8():
         return 'Forbidden site!'
 
     @staticmethod
-    def forbidden():
+    def forbidden9():
         return 'Forbidden site!'
 
     @staticmethod
-    def forbidden():
+    def forbidden10():
         return 'Forbidden site!'
 
     @staticmethod
-    def forbidden():
+    def forbidden11():
         return 'Forbidden site!'
 
     @staticmethod
-    def forbidden():
+    def forbidden12():
         return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-def forbidden():
-    return 'Forbidden site!'
-
-
-@staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-    @staticmethod
-    def forbidden():
-        return 'Forbidden site!'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     def testing_client(self):
         self.app.testing = True
