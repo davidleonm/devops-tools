@@ -3,9 +3,9 @@ Jenkins-test is my first project intended to learn about some DevOps tools such 
 
 ## Composition
 * **Docker** - Folder where configuration and necessary files to run the system are stored. Note that you have to use your own jenkins key to connect to the slave.
-* **PythonHelloWorld** - Folder with a basic Python Flask API and unit tests.
+* **PythonHelloWorld** - Folder with a basic Python Flask API solutions and its unit tests.
 * ***<Root>***
-  * **Jenkins files** - Files with Jenkins pipelines, separating branches and master branch.
+  * **Jenkins files** - Files with Jenkins pipelines, separating branches from master branch.
   * **README.md** - This file!
   * **sonar-project.properties** - File with configuration to execute Sonarqube analysis during master build.
 
@@ -24,7 +24,7 @@ docker-compose down
 And all the containers will be stopped and destroyed. Don't worry about the data because it is persistent in the volumes created.
 
 ### Python solution
-As said, it is only a basic Python Flask which runs a listener in the port 9999. Using curl, any browser or a rest client, you can get the result.
+As said, it is only a basic Python app which runs a listener in the port 9999. Using curl, any browser or a rest client, you can get the result.
 Being Python 3 previously installed, just execute:
 ```bash
 python hello_world.py
