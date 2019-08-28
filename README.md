@@ -4,7 +4,7 @@ Jenkins-test is my first project intended to learn about some DevOps tools such 
 ## Composition
 * **Docker** - Folder where configuration and necessary files to run the system are stored. Note that you have to use your own jenkins key to connect to the slave.
 * **PythonHelloWorld** - Folder with a basic Python Flask API solutions and its unit tests.
-* ***<Root>***
+* ***ROOT***
   * **Jenkins files** - Files with Jenkins pipelines, separating branches from master branch.
   * **README.md** - This file!
   * **sonar-project.properties** - File with configuration to execute Sonarqube analysis during master build.
