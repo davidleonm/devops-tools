@@ -2,8 +2,8 @@
 Jenkins-test is my first project intended to learn about some DevOps tools such as Jenkins, Sonarqube and Docker.
 
 ## Composition
-* **Docker** - Folder where configuration and necessary files to run the system are stored. Note that you have to use your own jenkins key to connect to the slave.
-* **PythonHelloWorld** - Folder with a basic Python Flask API solutions and its unit tests.
+* **Docker** - Folder where configuration and necessary files to run the system are stored. Note that you have to use your own jenkins key to connect to the slave as it is password protected.
+* **PythonHelloWorld** - Folder with a basic Python Flask API solution and its unit tests.
 * ***ROOT***
   * **Jenkins files** - Files with Jenkins pipelines, separating branches from master branch.
   * **README.md** - This file!
@@ -21,7 +21,9 @@ When you want to stop the system, just execute:
 ```bash
 docker-compose down
 ```
-And all the containers will be stopped and destroyed. Don't worry about the data because it is persistent in the volumes created.
+And all the containers will be stopped and destroyed. Don't worry about the data because it is persistent in the created volumes.
+
+Note that you would have to configure each tool separately, I mean, set Jenkins up, add the slave node to it, install plugins, connect it with Sonarqube, etc.
 
 ### Python solution
 As said, it is only a basic Python app which runs a listener in the port 9999. Using curl, any browser or a rest client, you can get the result.
@@ -39,4 +41,4 @@ curl http://127.0.0.1:9999/helloworld
 
 
 ## License
-Use this code as you wish!
+Use this code as you wish! Totally free to be copied/pasted.
