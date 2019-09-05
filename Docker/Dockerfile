@@ -23,7 +23,7 @@ RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
 RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
 RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key
 
-# Configured port for ssh connections
+# Configure port for ssh connections
 EXPOSE 2222
 
 # Start sshd
