@@ -3,7 +3,7 @@ MAINTAINER David Leon <david.leon.m@gmail.com>
 
 # Copy the application script and its requirements
 COPY PythonHelloWorld/HelloWorldFlask/hello_world.py /helloworld/app.py
-COPY PythonHelloWorld/HelloWorldFlask/requirements.txt /helloworld/requirements.txt
+COPY PythonHelloWorld/requirements.txt /helloworld/requirements.txt
 
 # Install references
 RUN pip install --upgrade pip
