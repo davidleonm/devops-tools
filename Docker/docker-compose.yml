@@ -13,6 +13,7 @@ services:
       - jenkins_home:/var/jenkins_home
   jenkins-slave:
     build: .
+    dockerfile: Dockerfile_Jenkins_Slave
     container_name: jenkins-slave
     ports:
       - "2222:2222"
