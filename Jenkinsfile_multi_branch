@@ -3,6 +3,7 @@ pipeline {
 
   environment {
       GITHUB_TOKEN = credentials('9ed2fdd8-9883-4ec5-b073-042b2b9b3457')
+      DOCKERHUB_REGISTRY_NAME = 'davidleonm/jenkins-test'
   }
 
   stages {
@@ -25,6 +26,17 @@ pipeline {
       steps {
         script {
           sh "ENV/bin/python -m unittest discover -s ${WORKSPACE}/PythonHelloWorld"
+        }
+      }
+    }
+
+    stage('Building image') {
+      steps {
+        script {
+          def customImage = docker.build("${DOCKERHUB_REGISTRY_NAME}:${BUILD_NUMBER}", "--file ./Docker/Dockerfile_Deployment ${WORKSPACE}")
+          docker.withRegistry('https://registry.example.com', 'credentials-id') {
+            # customImage.push()
+          }
         }
       }
     }
