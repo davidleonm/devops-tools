@@ -13,9 +13,11 @@ RUN apk add --no-cache \
 # Copy configuration for sshd
 COPY sshd_config /etc/ssh/sshd_config
 
-# Jenkins user creation
-RUN adduser -D -h /home/jenkins jenkins -s /bin/ash -G docker
+# Jenkins user creation and assign to necessary groups
+RUN adduser -D -h /home/jenkins jenkins -s /bin/ash
 RUN echo "jenkins:jenkins" | chpasswd
+RUN addgroup jenkins docker
+RUN addgroup jenkins ping
 
 # Add authorized keys for Jenkins user
 COPY jenkins_key.pub /home/jenkins/.ssh/authorized_keys
