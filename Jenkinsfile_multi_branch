@@ -2,8 +2,8 @@ pipeline {
   agent { label 'slave' }
 
   environment {
-      GITHUB_TOKEN = credentials('9ed2fdd8-9883-4ec5-b073-042b2b9b3457')
-      DOCKERHUB_REGISTRY_NAME = 'davidleonm/jenkins-test'
+    GITHUB_TOKEN = credentials('9ed2fdd8-9883-4ec5-b073-042b2b9b3457')
+    DOCKERHUB_REGISTRY_NAME = 'davidleonm/jenkins-test'
   }
 
   stages {
@@ -29,15 +29,44 @@ pipeline {
         }
       }
     }
-
-    stage('Building image') {
+    
+    // REMOVE FROM HERE AND ADD IT TO MASTER
+    // I MUST TEST THIS TO KNOW IF IT IS WORKING!
+    stage('Tag version') {
       steps {
         script {
-          def customImage = docker.build("${DOCKERHUB_REGISTRY_NAME}:${BUILD_NUMBER}", "--file ./Docker/Dockerfile_Deployment ${WORKSPACE}")
-          docker.withRegistry('https://registry.example.com', 'credentials-id') {
-            # customImage.push()
+          VERSION = sh(script: cat VERSION, returnStdout: true)
+          sh """
+            git tag -a ${VERSION} -m "version ${VERSION}"
+            git push
+            git push --tags
+          """
+        }
+      }
+    }
+
+    stage('Build image') {
+      steps {
+        script {
+          def DOCKER_IMAGE = docker.build("${DOCKERHUB_REGISTRY_NAME}:${VERSION}", "--file ./Docker/Dockerfile_Deployment ${WORKSPACE}")
+        }
+      }
+    }
+
+    stage('Deploy image') {
+      steps {
+        script {
+          docker.withRegistry('', '<CHANGE THIS>') {
+            DOCKER_IMAGE.push()
+            DOCKER_IMAGE.push('latest')
           }
         }
+      }
+    }
+    
+    stage('Remove temporary docker image') {
+      steps{
+        sh "docker rmi -f ${DOCKERHUB_REGISTRY_NAME}:${VERSION}"
       }
     }
   }
