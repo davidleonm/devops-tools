@@ -31,23 +31,10 @@ pipeline {
     }
     
     // REMOVE FROM HERE AND ADD IT TO MASTER
-    // I MUST TEST THIS TO KNOW IF IT IS WORKING!
-    stage('Tag version') {
-      steps {
-        script {
-          VERSION = sh(script: 'cat VERSION', returnStdout: true)
-          sh """
-            git tag -a ${VERSION} -m "version ${VERSION}"
-            git push
-            git push --tags
-          """
-        }
-      }
-    }
-
     stage('Build image') {
       steps {
         script {
+          VERSION = sh(script: 'cat VERSION', returnStdout: true)
           def DOCKER_IMAGE = docker.build("${DOCKERHUB_REGISTRY_NAME}:${VERSION}", "--file ./Docker/Dockerfile_Deployment ${WORKSPACE}")
         }
       }
