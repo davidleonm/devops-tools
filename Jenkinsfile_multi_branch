@@ -50,12 +50,6 @@ pipeline {
         }
       }
     }
-    
-    stage('Remove temporary docker image') {
-      steps{
-        sh "docker rmi -f ${DOCKERHUB_REGISTRY_NAME}"
-      }
-    }
   }
   post {
     success {
@@ -67,6 +61,12 @@ pipeline {
     failure {
       script {
         SetBuildStatus('failure')
+      }
+    }
+    
+    always {
+      script {
+        sh "docker rmi -f ${DOCKERHUB_REGISTRY_NAME}"
       }
     }
   }
