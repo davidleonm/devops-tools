@@ -35,7 +35,7 @@ pipeline {
       steps {
         script {
           VERSION = sh(script: 'cat VERSION', returnStdout: true)
-          def DOCKER_IMAGE = docker.build("${DOCKERHUB_REGISTRY_NAME}:${VERSION}", "--file ./Docker/Dockerfile_Deployment ${WORKSPACE}")
+          def DOCKER_IMAGE = docker.build("${DOCKERHUB_REGISTRY_NAME}", "--file ./Docker/Dockerfile_Deployment ${WORKSPACE}")
         }
       }
     }
@@ -44,7 +44,7 @@ pipeline {
       steps {
         script {
           docker.withRegistry('', '4ee308f2-529e-4509-95a5-12f757910667') {
-            DOCKER_IMAGE.push()
+            DOCKER_IMAGE.push("${VERSION}")
             DOCKER_IMAGE.push('latest')
           }
         }
@@ -53,7 +53,7 @@ pipeline {
     
     stage('Remove temporary docker image') {
       steps{
-        sh "docker rmi -f ${DOCKERHUB_REGISTRY_NAME}:${VERSION}"
+        sh "docker rmi -f ${DOCKERHUB_REGISTRY_NAME}"
       }
     }
   }
