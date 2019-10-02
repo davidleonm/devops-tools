@@ -35,7 +35,7 @@ pipeline {
     stage('Tag version') {
       steps {
         script {
-          VERSION = sh(script: cat VERSION, returnStdout: true)
+          VERSION = sh(script: 'cat VERSION', returnStdout: true)
           sh """
             git tag -a ${VERSION} -m "version ${VERSION}"
             git push
@@ -56,7 +56,7 @@ pipeline {
     stage('Deploy image') {
       steps {
         script {
-          docker.withRegistry('', '<CHANGE THIS>') {
+          docker.withRegistry('', '4ee308f2-529e-4509-95a5-12f757910667') {
             DOCKER_IMAGE.push()
             DOCKER_IMAGE.push('latest')
           }
