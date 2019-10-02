@@ -31,18 +31,12 @@ pipeline {
     }
     
     // REMOVE FROM HERE AND ADD IT TO MASTER
-    stage('Build image') {
+    stage('Build & Deploy image') {
       steps {
         script {
           VERSION = sh(script: 'cat VERSION', returnStdout: true)
           def DOCKER_IMAGE = docker.build("${DOCKERHUB_REGISTRY_NAME}", "--file ./Docker/Dockerfile_Deployment ${WORKSPACE}")
-        }
-      }
-    }
-
-    stage('Deploy image') {
-      steps {
-        script {
+          
           docker.withRegistry('', '4ee308f2-529e-4509-95a5-12f757910667') {
             DOCKER_IMAGE.push("${VERSION}")
             DOCKER_IMAGE.push('latest')
