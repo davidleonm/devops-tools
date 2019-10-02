@@ -36,7 +36,17 @@ And to query the API:
 curl http://127.0.0.1:9999/helloworld
 ```
 
+## Deployment
+The master Jenkinsfile has been updated with a new step to deploy the solution in a Docker container.
+
+I created the file 'Dockerfile_Deployment' to build the image. Basically it copies the Python app and install the required libraries.
+
+When a branch is merged to master, Jenkins builds the image and pushes it onto my own [registry](https://cloud.docker.com/u/davidleonm/repository/docker/davidleonm/pythonhelloworld).
+
+The version is located in the 'VERSION' file. It must be modified manually, I thought about auto-tagging with Jenkins but I think that Jenkins should be readonly. Furthermore, all the Github repositories are configured to allow only signed commits, if Jenkins is able to commit and push, it would imply a secuity breach.
+
 ## Changelog
+* **1.0.0** - Updated the pipelines to deploy the solution after merging to master.
 * **First release** - First release with a working suite of DevOps tools and a basic Python solution.
 
 

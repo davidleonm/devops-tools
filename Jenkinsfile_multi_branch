@@ -2,7 +2,7 @@ pipeline {
   agent { label 'slave' }
 
   environment {
-      GITHUB_TOKEN = credentials('9ed2fdd8-9883-4ec5-b073-042b2b9b3457')
+    GITHUB_TOKEN = credentials('9ed2fdd8-9883-4ec5-b073-042b2b9b3457')
   }
 
   stages {

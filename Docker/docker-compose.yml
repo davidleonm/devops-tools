@@ -12,10 +12,14 @@ services:
     volumes:
       - jenkins_home:/var/jenkins_home
   jenkins-slave:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile_Jenkins_Slave
     container_name: jenkins-slave
     ports:
       - "2222:2222"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
   sonarqube:
     container_name: sonarqube
     image: sonarqube:latest

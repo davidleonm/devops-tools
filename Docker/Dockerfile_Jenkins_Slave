@@ -2,18 +2,22 @@ FROM python:3.7.3-alpine3.9
 MAINTAINER David Leon <david.leon.m@gmail.com>
 
 # Update packages and install openssh-server and java
-RUN apk add --no-cache openssh \
+RUN apk add --no-cache \
+    openssh \
     openjdk8 \
     git \
     py3-virtualenv \
-    curl
+    curl \
+    docker
 
 # Copy configuration for sshd
 COPY sshd_config /etc/ssh/sshd_config
 
-# Jenkins user creation
+# Jenkins user creation and assign to necessary groups
 RUN adduser -D -h /home/jenkins jenkins -s /bin/ash
 RUN echo "jenkins:jenkins" | chpasswd
+RUN addgroup jenkins docker
+RUN addgroup jenkins ping
 
 # Add authorized keys for Jenkins user
 COPY jenkins_key.pub /home/jenkins/.ssh/authorized_keys
@@ -23,7 +27,7 @@ RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
 RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
 RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key
 
-# Configured port for ssh connections
+# Configure port for ssh connections
 EXPOSE 2222
 
 # Start sshd
