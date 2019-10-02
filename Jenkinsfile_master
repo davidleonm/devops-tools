@@ -2,7 +2,8 @@ pipeline {
   agent { label 'slave' }
 
   environment {
-      GITHUB_TOKEN = credentials('9ed2fdd8-9883-4ec5-b073-042b2b9b3457')
+    GITHUB_TOKEN = credentials('9ed2fdd8-9883-4ec5-b073-042b2b9b3457')
+    DOCKERHUB_REGISTRY_NAME = 'davidleonm/pythonhelloworld'
   }
 
   stages {
@@ -44,6 +45,31 @@ pipeline {
         }
         timeout(time: 10, unit: 'MINUTES') {
           waitForQualityGate abortPipeline: true
+        }
+      }
+    }
+    
+    stage('Build & Deploy image') {
+      steps {
+        script {
+          def DOCKER_IMAGE = null
+          
+          try {
+            VERSION = sh(script: 'cat VERSION', returnStdout: true)
+            DOCKER_IMAGE = docker.build("${DOCKERHUB_REGISTRY_NAME}", "--file ./Docker/Dockerfile_Deployment ${WORKSPACE}")
+          
+            docker.withRegistry('', '4ee308f2-529e-4509-95a5-12f757910667') {
+              DOCKER_IMAGE.push("${VERSION}")
+              DOCKER_IMAGE.push('latest')
+            }
+          } finally {
+            if (DOCKER_IMAGE != null) {
+              sh """
+                docker rmi -f ${DOCKERHUB_REGISTRY_NAME}:${VERSION}
+                docker rmi -f ${DOCKERHUB_REGISTRY_NAME}:latest
+              """
+            }
+          }
         }
       }
     }
