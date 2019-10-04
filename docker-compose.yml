@@ -14,7 +14,7 @@ services:
   jenkins-slave:
     build:
       context: .
-      dockerfile: Dockerfile_Jenkins_Slave
+      dockerfile: Dockerfile
     container_name: jenkins-slave
     ports:
       - "2222:2222"
