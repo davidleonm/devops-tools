@@ -84,7 +84,7 @@ Select default plugins to be installed and configure a user different than admin
 #### Configure external credentials
 Go to Credentials -> Global credentials.
 You need to configure credentials for:
-* Git repository. Github, Bitbucket...
+* Git repository. Github, Bitbucket.... Keep in mind that **you may require ssh access also here**.
 * Secret text with the token for the non-admin user generated in a previous step.
 * SSH with private key connection to the Slave container. Use the content of jenkins_key.pub as private key.
 
@@ -98,6 +98,8 @@ Go to Administrate Jenkins -> Configure the system -> Add Sonarqube (in SonarQub
 * **URL:** URL_OF_THE_SERVER
 * **Credentials:** The secret text configured for Sonarqube.
 
+Go to Administrate Jenkins -> Global Tool Configuration. Add a new Sonarqube Scanner called 'Sonarqube'.
+
 
 #### Configure Jenkins Slave
 Go to Administrate Jenkins -> Administrate nodes. New node as 'Permanent agent'.
@@ -109,8 +111,31 @@ Go to Administrate Jenkins -> Administrate nodes. New node as 'Permanent agent'.
 * **Execution mode:** SSH
 * **Credentials:** The ones configured with the private key.
 * **Host key verification:** Non verifying Verification Strategy.
-* **Advanced / Port:** 2222
+* **Advanced / Port:** 2222.
 
+Once the configuration is set, the new one added should appear in the node list.
+
+
+#### Configure pipeline for branches
+Create a 'Multibranch Pipeline' project whose name **doesn't have spaces**.
+* **Display name:** A desired one.
+* **Description:** A desired one.
+* **Git branch source:**
+    * **Project repository:** Your python-hello-world git repository.
+    * **Credentials:** The ones configured with your git access.
+    * **Discover branches:** Exclude 'master'. All others will be included as valid branches.
+* **Build configuration:** By Jenkinsfile. As Jenkinsfile path set 'Jenkinsfile_multi_branch'.
+
+#### Configure pipeline for master
+Create a 'Pipeline' project whose name **doesn't have spaces**.
+* **Description:** A desired one.
+* Do not allow concurrent builds.
+* **Query SCM repository:** H/5 * * * *
+* **Pipeline from SCM:**
+    * **Repository URL:** Your python-hello-world git repository.
+    * **Credentials:** The ones configured with your git access.
+    * **Branch Specifier:** master.
+    * **Script Path:** Jenkinsfile_master.
 
 ## Changelog
 * **2.1.0** - Improved documentation to show how to put everything in place.
