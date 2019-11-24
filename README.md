@@ -1,6 +1,7 @@
 # Jenkins-Test
 Jenkins-test is my first project intended to learn about some DevOps tools such as Jenkins, Sonarqube and Docker.
 
+
 ## Composition
 * **docker-compose.yml** - Orchestator of the instance. It runs a Jenkins node in Alpine, Python slave node in Alpine and a Sonarqube. All nodes use volumes to store persistent data. Note that you would have to configure all the nodes to make them be connected, such as SSH connections, passwords, etc.
 * **Dockerfile** - Docker file to build the Python Alpine node.
@@ -9,6 +10,7 @@ Jenkins-test is my first project intended to learn about some DevOps tools such 
 * **LICENSE** - File with the license, basically it says that you can use the code as you wish.
 * **README.md** - This file!
 * **sshd_config** - File with configuration for SSH daemon, such as deny root connections, password authentication, change the port and some more.
+
 
 ## Initiate the system
 To run all the instances just run:
@@ -22,20 +24,100 @@ docker-compose down
 ```
 And all the containers will be stopped and deleted.
 
+
 ## Configure the components involved
 Once the system is initiated, there are several configurations to be performed in order to connect all the elements and start working with them.
+
+
+### Generate your own ssh keys to grant access to the Jenkins Slave container
+You must generate the keys, private and public, to grant access to Jenkins to the Slave container. *From the Docker host nd being situated in the [jenkins-test](https://github.com/davidleonm/jenkins-test) project root folder.*
+```bash
+$ ssh-keygen -t ecdsa -b 521 -f jenkins_key
+Generating public/private ecdsa key pair.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in jenkins_key.
+Your public key has been saved in jenkins_key.pub.
+The key fingerprint is:
+SHA256:G4M4aI2MyuTMLPb5JSK/R2yx14gNmYPTo2QtJsG+hKI
+The key's randomart image is:
++---[ECDSA 521]---+
+|.                |
+| o               |
+|o . + o          |
+|o* @ @ .         |
+|=.@ O X S        |
+|Eo . B + =       |
+|oO .o....        |
+|o + o.o          |
+|   =+.           |
++----[SHA256]-----+
+```
+The file jenkins_key.pup will be copied automatically to the Jenkins slave so in case of losing the passphrase, you have to generate the files again.
+
+
 ### Sonarqube
 This is the application to execute code analysis. The default url and port is [http://DOCKER_HOST:9000](http://DOCKER_HOST:9000). The default credentials are *admin*/*admin*.
+
+
 #### Configure non-admin credentials
 Go to Administration -> Security -> Users. Create a new user for jenkins to create analysis, it must belong to sonar-users group.
+
 #### Configure the webhook to block builds which are not compliant with quality gates
 Go to Administration -> Configuration -> Webhooks. Here, you have to put an URL to your Jenkins instance in this way [http://JENKINS_INSTANCE/sonarqube-webhook](https://JENKINS_INSTANCE/sonarqube-webhook)
+
+#### Generate a token to authenticate with the non-admin user
+Log in the Sonarqube instance with the new non-admin user and go to My Account -> Security and generate a new token with a desired name.
+
+### Jenkins
+This is the application in charge of CI/CD and execute code analysis.
+
+
+#### Configure admin credentials and initial configuration
+To figure out the secret password, execute this command on your Docker host
+```bash
+docker exec jenkins-master cat /var/jenkins_home/secrets/initialAdminPassword
+printed_password!
+```
+Select default plugins to be installed and configure a user different than admin.
+
+#### Configure external credentials
+Go to Credentials -> Global credentials.
+You need to configure credentials for:
+* Git repository. Github, Bitbucket...
+* Secret text with the token for the non-admin user generated in a previous step.
+* SSH with private key connection to the Slave container. Use the content of jenkins_key.pub as private key.
+
+#### Install additional plugins
+* SonarQube Scanner.
+* docker-plugin.
+
+#### Configure Sonarqube
+Go to Administrate Jenkins -> Configure the system -> Add Sonarqube (in SonarQube servers section).
+* **Name:** Sonarqube
+* **URL:** URL_OF_THE_SERVER
+* **Credentials:** The secret text configured for Sonarqube.
+
+
+#### Configure Jenkins Slave
+Go to Administrate Jenkins -> Administrate nodes. New node as 'Permanent agent'.
+* **Name:** A desired one.
+* **Executors:** 1.
+* **Root folder:** /home/jenkins.
+* **Labels:** slave.
+* **Machine name:** jenkins-slave
+* **Execution mode:** SSH
+* **Credentials:** The ones configured with the private key.
+* **Host key verification:** Non verifying Verification Strategy.
+* **Advanced / Port:** 2222
+
 
 ## Changelog
 * **2.1.0** - Improved documentation to show how to put everything in place.
 * **2.0.0** - Splitted Jenkins files from Python solution files.
 * **1.0.0** - Updated the pipelines to deploy the solution after merging to master.
 * **First release** - First release with a working suite of DevOps tools and a basic Python solution.
+
 
 ## License
 Use this code as you wish! Totally free to be copied/pasted.
