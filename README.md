@@ -88,7 +88,7 @@ You need to configure credentials for:
 * Git repository. Github, Bitbucket.... Keep in mind that **you may require ssh access also here**.
 * Secret text with the token for the non-admin user generated in a previous step.
 * SSH with private key connection to the Slave container. Use the content of jenkins_key.pub as private key.
-* Secret text with the ID 'github-token' in order to manage branch status from Jenkins.
+* Secret text with the ID 'github-token' in order to manage branch status from Jenkins. Keep in mind that you will need to create a token in your Github account.
 * Login to Docker Hub with the ID 'docker-hub-login' to store there the images generated.
 
 #### Install additional plugins
