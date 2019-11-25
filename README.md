@@ -30,7 +30,7 @@ Once the system is initiated, there are several configurations to be performed i
 
 
 ### Generate your own ssh keys to grant access to the Jenkins Slave container
-You must generate the keys, private and public, to grant access to Jenkins to the Slave container. *From the Docker host nd being situated in the [jenkins-test](https://github.com/davidleonm/jenkins-test) project root folder.*
+You must generate the keys, private and public, to grant access to Jenkins to the Slave container. *From the Docker host and being situated in the [jenkins-test](https://github.com/davidleonm/jenkins-test) project root folder.*
 ```bash
 $ ssh-keygen -t ecdsa -b 521 -f jenkins_key
 Generating public/private ecdsa key pair.
