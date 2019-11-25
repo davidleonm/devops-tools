@@ -69,6 +69,7 @@ Go to Administration -> Configuration -> Webhooks. Here, you have to put an URL 
 #### Generate a token to authenticate with the non-admin user
 Log in the Sonarqube instance with the new non-admin user and go to My Account -> Security and generate a new token with a desired name.
 
+
 ### Jenkins
 This is the application in charge of CI/CD and execute code analysis.
 
@@ -87,6 +88,8 @@ You need to configure credentials for:
 * Git repository. Github, Bitbucket.... Keep in mind that **you may require ssh access also here**.
 * Secret text with the token for the non-admin user generated in a previous step.
 * SSH with private key connection to the Slave container. Use the content of jenkins_key.pub as private key.
+* Secret text with the ID 'github-token' in order to manage branch status from Jenkins.
+* Login to Docker Hub with the ID 'docker-hub-login' to store there the images generated.
 
 #### Install additional plugins
 * SonarQube Scanner.
