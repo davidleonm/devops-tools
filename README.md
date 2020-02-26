@@ -141,6 +141,7 @@ Create a 'Pipeline' project whose name **doesn't have spaces**.
     * **Script Path:** Jenkinsfile_master.
 
 ## Changelog
+* **2.2.0** - Updated Python container version.
 * **2.1.0** - Improved documentation to show how to put everything in place.
 * **2.0.0** - Splitted Jenkins files from Python solution files.
 * **1.0.0** - Updated the pipelines to deploy the solution after merging to master.
