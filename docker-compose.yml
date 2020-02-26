@@ -17,7 +17,7 @@ services:
       dockerfile: Dockerfile
     container_name: jenkins-slave
     ports:
-      - "2222:2222"
+      - "2233:2233"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   sonarqube:

@@ -114,7 +114,7 @@ Go to Administrate Jenkins -> Administrate nodes. New node as 'Permanent agent'.
 * **Execution mode:** SSH
 * **Credentials:** The ones configured with the private key.
 * **Host key verification:** Non verifying Verification Strategy.
-* **Advanced / Port:** 2222.
+* **Advanced / Port:** 2233.
 
 Once the configuration is set, the new one added should appear in the node list.
 

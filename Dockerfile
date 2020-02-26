@@ -28,7 +28,7 @@ RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
 RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key
 
 # Configure port for ssh connections
-EXPOSE 2222
+EXPOSE 2233
 
 # Start sshd
 CMD ["/usr/sbin/sshd", "-D"]
