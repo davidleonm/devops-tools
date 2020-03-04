@@ -30,7 +30,7 @@ Once the system is initiated, there are several configurations to be performed i
 
 
 ### Generate your own ssh keys to grant access to the Jenkins Slave container
-You must generate the keys, private and public, to grant access to Jenkins to the Slave container. *From the Docker host and being situated in the [jenkins-test](https://github.com/davidleonm/jenkins-test) project root folder.*
+You must generate the keys, private and public, to grant access to Jenkins to the Slave container. *From the Docker host and being situated in the [environment-test](https://github.com/davidleonm/environment-test) project root folder.*
 ```bash
 $ ssh-keygen -t ecdsa -b 521 -f jenkins_key
 Generating public/private ecdsa key pair.
@@ -85,9 +85,9 @@ Select default plugins to be installed and configure a user different than admin
 #### Configure external credentials
 Go to Credentials -> Global credentials.
 You need to configure credentials for:
-* Git repository. Github, Bitbucket.... Keep in mind that **you may require ssh access also here**.
-* Secret text with the token for the non-admin user generated in a previous step.
-* SSH with private key connection to the Slave container. Use the content of jenkins_key.pub as private key.
+* Git repository you are using. In this example I assume you have Github.
+* Secret text with the token for the Sonarqube non-admin user generated in a previous step.
+* SSH with private key connection to the Slave container. Use the content of jenkins_key file as private key.
 * Secret text with the ID 'github-token' in order to manage branch status from Jenkins. Keep in mind that you will need to create a token in your Github account.
 * Login to Docker Hub with the ID 'docker-hub-login' to store there the images generated.
 
@@ -141,6 +141,7 @@ Create a 'Pipeline' project whose name **doesn't have spaces**.
     * **Script Path:** Jenkinsfile_master.
 
 ## Changelog
+* **2.2.1** - Fixed documentation.
 * **2.2.0** - Updated Python container version.
 * **2.1.0** - Improved documentation to show how to put everything in place.
 * **2.0.0** - Splitted Jenkins files from Python solution files.
