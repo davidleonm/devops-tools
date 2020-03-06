@@ -123,11 +123,12 @@ Once the configuration is set, the new one added should appear in the node list.
 Create a 'Multibranch Pipeline' project whose name **doesn't have spaces**.
 * **Display name:** A desired one.
 * **Description:** A desired one.
+* **Scan Multibranch Pipeline Triggers:** Periodically if not otherwise run each 1 minute
 * **Git branch source:**
     * **Project repository:** Your python-hello-world git repository.
     * **Credentials:** The ones configured with your git access.
     * **Discover branches:** Exclude 'master'. All others will be included as valid branches.
-* **Build configuration:** By Jenkinsfile. As Jenkinsfile path set 'Jenkinsfile_multi_branch'.
+* **Build configuration:** By Jenkinsfile. As Jenkinsfile path set 'Jenkinsfile_multi_branch.groovy'.
 
 #### Configure pipeline for master
 Create a 'Pipeline' project whose name **doesn't have spaces**.
@@ -138,7 +139,7 @@ Create a 'Pipeline' project whose name **doesn't have spaces**.
     * **Repository URL:** Your python-hello-world git repository.
     * **Credentials:** The ones configured with your git access.
     * **Branch Specifier:** master.
-    * **Script Path:** Jenkinsfile_master.
+    * **Script Path:** Jenkinsfile_master.groovy.
 
 ## Changelog
 * **2.2.1** - Fixed documentation.
