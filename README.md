@@ -141,6 +141,9 @@ Create a 'Pipeline' project whose name **doesn't have spaces**.
     * **Branch Specifier:** master.
     * **Script Path:** Jenkinsfile_master.groovy.
 
+#### Configure a shared library
+Configure a shared library using the documentation included [here](https://github.com/davidleonm/shared-library).
+
 ## Changelog
 * **2.2.1** - Fixed documentation.
 * **2.2.0** - Updated Python container version.
