@@ -93,7 +93,7 @@ You need to configure credentials for:
 
 #### Install additional plugins
 * SonarQube Scanner.
-* docker-plugin.
+* docker-workflow.
 
 #### Configure Sonarqube
 Go to Administrate Jenkins -> Configure the system -> Add Sonarqube (in SonarQube servers section).
