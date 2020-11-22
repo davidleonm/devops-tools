@@ -1,4 +1,4 @@
-FROM python:3.9.0-alpine3.12
+FROM python:3.9.0-alpine
 LABEL maintainer="David Leon <david.leon.m@gmail.com>"
 
 # Update packages and install openssh-server and java
