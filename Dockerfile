@@ -1,14 +1,18 @@
 FROM python:3.9.0-alpine
 LABEL maintainer="David Leon <david.leon.m@gmail.com>"
 
-# Update packages and install openssh-server and java
+# Install needed libraries
 RUN apk add --no-cache \
     openssh \
     openjdk8 \
     git \
     py3-virtualenv \
     curl \
-    docker
+    docker \
+    postgresql-dev \
+    gcc \
+    python3-dev \
+    musl-dev
 
 # Copy configuration for sshd
 COPY sshd_config /etc/ssh/sshd_config
