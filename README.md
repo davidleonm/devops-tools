@@ -145,7 +145,8 @@ Create a 'Pipeline' project whose name **doesn't have spaces**.
 Configure a shared library using the documentation included [here](https://github.com/davidleonm/shared-library).
 
 ## Changelog
-* **2.2.2** - Changed alpine version.
+* **2.3.0** - Added more packages to be able to install certain Python libraries.
+* **2.2.0** - Changed alpine version.
 * **2.2.1** - Fixed documentation.
 * **2.2.0** - Updated Python container version.
 * **2.1.0** - Improved documentation to show how to put everything in place.

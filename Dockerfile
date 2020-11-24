@@ -8,7 +8,12 @@ RUN apk add --no-cache \
     git \
     py3-virtualenv \
     curl \
-    docker
+    docker \
+    postgresql-dev \
+    gcc \
+    python3-dev \
+    musl-dev \
+    make
 
 # Copy configuration for sshd
 COPY sshd_config /etc/ssh/sshd_config
