@@ -9,8 +9,11 @@ Environment-Test is my first project intended to learn about some DevOps tools s
 * **jenkins_key.pub** - SSH Public key which is imported in the slave to allow connections from Jenkins.
 * **LICENSE** - File with the license, basically it says that you can use the code as you wish.
 * **README.md** - This file!
+* **qemu-arm-static** - To be able to build ARM images on x86/x64 hosts.
 * **sshd_config** - File with configuration for SSH daemon, such as deny root connections, password authentication, change the port and some more.
 
+## Install QEMU to add the capability of building ARM on x86/x64 hosts
+For some projects you may be interested in building ARM images with Docker, it is not possible unless you install this library and follow this [tutorial](https://matchboxdorry.gitbooks.io/matchboxblog/content/blogs/build_and_run_arm_images.html).
 
 ## Initiate the system
 To run all the instances just run:
@@ -145,6 +148,7 @@ Create a 'Pipeline' project whose name **doesn't have spaces**.
 Configure a shared library using the documentation included [here](https://github.com/davidleonm/shared-library).
 
 ## Changelog
+* **2.4.0** - Added QEMU to build ARM images on x86/x64 hosts.
 * **2.3.0** - Added more packages to be able to install certain Python libraries.
 * **2.2.0** - Changed alpine version.
 * **2.2.1** - Fixed documentation.

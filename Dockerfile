@@ -15,6 +15,9 @@ RUN apk add --no-cache \
     musl-dev \
     make
 
+# Copy needed files to build arm images
+COPY qemu-arm-static /usr/bin/qemu-arm-static 
+
 # Copy configuration for sshd
 COPY sshd_config /etc/ssh/sshd_config
 
