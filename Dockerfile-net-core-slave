@@ -1,23 +1,14 @@
-FROM python:3.9.0-alpine
+FROM mcr.microsoft.com/dotnet/sdk:5.0.202-alpine3.13-amd64
 LABEL maintainer="David Leon <david.leon.m@gmail.com>"
 
 # Install needed libraries
 RUN apk add --no-cache \
     openssh \
-    openjdk8 \
+    openjdk11 \
     git \
-    py3-virtualenv \
     curl \
-    docker \
-    postgresql-dev \
-    gcc \
-    python3-dev \
-    musl-dev \
-    make
-
-# Copy needed files to build arm images
-COPY qemu-arm-static /usr/bin/qemu-arm-static 
-
+    docker
+    
 # Copy configuration for sshd
 COPY sshd_config /etc/ssh/sshd_config
 

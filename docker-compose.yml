@@ -2,7 +2,8 @@ version: "3.5"
 services:
   jenkins-master:
     depends_on:
-      - jenkins-slave
+      - jenkins-python-slave
+      - jenkins-net-core-slave
       - sonarqube
     container_name: jenkins-master
     image: jenkins/jenkins:lts-alpine
@@ -11,13 +12,22 @@ services:
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
-  jenkins-slave:
+  jenkins-python-slave:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: jenkins-slave
+      dockerfile: Dockerfile-python-slave
+    container_name: jenkins-python-slave
     ports:
       - "2233:2233"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+  jenkins-net-core-slave:
+    build:
+      context: .
+      dockerfile: Dockerfile-net-core-slave
+    container_name: jenkins-net-core-slave
+    ports:
+      - "2244:2233"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   sonarqube:
