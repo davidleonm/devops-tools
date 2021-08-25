@@ -32,7 +32,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
   sonarqube:
     container_name: sonarqube
-    image: sonarqube
+    image: sonarqube:8.9.2-community
     ports:
       - "9000:9000"
     volumes:
@@ -43,4 +43,4 @@ volumes:
   jenkins_home:
   sonarqube_data:
   sonarqube_logs:
-  sonarqube_extensions:  
+  sonarqube_extensions:

@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:5.0.202-alpine3.13-amd64
+FROM mcr.microsoft.com/dotnet/sdk:5.0.400-alpine3.13-amd64
 LABEL maintainer="David Leon <david.leon.m@gmail.com>"
 
 # Install needed libraries
@@ -8,7 +8,7 @@ RUN apk add --no-cache \
     git \
     curl \
     docker
-    
+
 # Copy configuration for sshd
 COPY sshd_config /etc/ssh/sshd_config
 
