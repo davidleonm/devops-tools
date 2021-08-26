@@ -39,6 +39,22 @@ services:
      - sonarqube_data:/opt/sonarqube/data
      - sonarqube_logs:/opt/sonarqube/logs
      - sonarqube_extensions:/opt/sonarqube/extensions
+  docker-registry:
+    build:
+      context: .
+      dockerfile: Dockerfile-internal-registry
+    container_name: docker-registry
+    ports:
+      - "5000:5000"
+    environment:
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM="Registry Realm"
+    args:
+      USER=test
+      PASSWORD=test
+    volumes:
+      - ~/docker-registry-data/:/var/lib/registry
 volumes:
   jenkins_home:
   sonarqube_data:
