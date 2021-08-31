@@ -7,7 +7,9 @@ RUN apk add --no-cache \
     openjdk11 \
     git \
     curl \
-    docker
+    docker \
+    nodejs \
+    npm
 
 # Copy configuration for sshd
 COPY sshd_config /etc/ssh/sshd_config
