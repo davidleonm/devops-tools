@@ -1,10 +1,12 @@
-FROM mcr.microsoft.com/dotnet/sdk:5.0.400-alpine3.13-amd64
+FROM mcr.microsoft.com/dotnet/sdk:5.0.403-bullseye-slim-amd64
 LABEL maintainer="David Leon <david.leon.m@gmail.com>"
 
 # Install needed libraries
-RUN apk add --no-cache \
-    openssh \
-    openjdk11 \
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y \
+    openssh-server \
+    openjdk-11-jre \
     git \
     curl \
     docker \
@@ -15,21 +17,21 @@ RUN apk add --no-cache \
 COPY sshd_config /etc/ssh/sshd_config
 
 # Jenkins user creation and assign to necessary groups
-RUN adduser -D -h /home/jenkins jenkins -s /bin/ash
+RUN useradd -ms /bin/bash jenkins
 RUN echo "jenkins:jenkins" | chpasswd
-RUN addgroup jenkins docker
-RUN addgroup jenkins ping
 
 # Add authorized keys for Jenkins user
 COPY jenkins_key.pub /home/jenkins/.ssh/authorized_keys
 
 # Create hosts keys
-RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
 RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
-RUN ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key
 
 # Configure port for ssh connections
 EXPOSE 2233
+
+# Hack to fix problem with permissions
+RUN mkdir /run/sshd
+RUN chmod 0755 /run/sshd
 
 # Start sshd
 CMD ["/usr/sbin/sshd", "-D"]
