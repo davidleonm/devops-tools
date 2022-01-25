@@ -12,6 +12,8 @@ services:
       - "50000:50000"
     volumes:
       - ~/jenkins-data:/var/jenkins_home
+      - '/etc/timezone:/etc/timezone:ro'
+      - '/etc/localtime:/etc/localtime:ro'
   jenkins-python-slave:
     build:
       context: .
@@ -21,6 +23,8 @@ services:
       - "2233:2233"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - '/etc/timezone:/etc/timezone:ro'
+      - '/etc/localtime:/etc/localtime:ro'
   jenkins-net-core-slave:
     build:
       context: .
@@ -39,6 +43,8 @@ services:
      - ~/sonarqube-data:/opt/sonarqube/data
      - ~/sonarqube-logs:/opt/sonarqube/logs
      - ~/sonarqube-extensions:/opt/sonarqube/extensions
+     - '/etc/timezone:/etc/timezone:ro'
+     - '/etc/localtime:/etc/localtime:ro'
   docker-registry:
     build:
       context: .
@@ -55,3 +61,5 @@ services:
       PASSWORD=test
     volumes:
       - ~/docker-registry-data:/var/lib/registry
+      - '/etc/timezone:/etc/timezone:ro'
+      - '/etc/localtime:/etc/localtime:ro'

@@ -9,9 +9,11 @@ RUN apt-get install -y \
     openjdk-11-jre \
     git \
     curl \
-    docker \
     nodejs \
     npm
+
+# Install Docker
+RUN curl -sSL https://get.docker.com/ | sh
 
 # Copy configuration for sshd
 COPY sshd_config /etc/ssh/sshd_config

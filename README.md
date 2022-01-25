@@ -3,8 +3,8 @@ Environment-Test is my first project intended to learn about some DevOps tools s
 
 
 ## Composition
-* **docker-compose.yml** - Orchestator of the instance. It runs a Jenkins node in Alpine, Python slave node in Alpine and a Sonarqube. All nodes use volumes to store persistent data. Note that you would have to configure all the nodes to make them be connected, such as SSH connections, passwords, etc.
-* **Dockerfile** - Docker file to build the Python Alpine node.
+* **docker-compose.yml** - Orchestator of the instance. It runs a Jenkins, Python and .NET Core slaves, Sonarqube and Docker registry instances. All nodes use volumes to store persistent data. Note that you would have to configure all the nodes to make them be connected, such as SSH connections, passwords, etc.
+* **Dockerfiles** - Docker file to build the Jenkins slaves and the Docker registry for staging.
 * **jenkins_key** - SSH private key to connect Jenkins with the slave. Please use your own file :).
 * **jenkins_key.pub** - SSH Public key which is imported in the slave to allow connections from Jenkins.
 * **LICENSE** - File with the license, basically it says that you can use the code as you wish.
@@ -148,6 +148,7 @@ Create a 'Pipeline' project whose name **doesn't have spaces**.
 Configure a shared library using the documentation included [here](https://github.com/davidleonm/shared-library).
 
 ## Changelog
+* **2.5.0** - Added dockerfile for .NET Core, docker-compose.yml updated to use persistent volumes.
 * **2.4.0** - Added QEMU to build ARM images on x86/x64 hosts.
 * **2.3.0** - Added more packages to be able to install certain Python libraries.
 * **2.2.0** - Changed alpine version.
