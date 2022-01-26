@@ -1,0 +1,17 @@
+FROM registry:2.7.1
+LABEL maintainer="David Leon <david.leon.m@gmail.com>"
+
+# Arguments with the desired user and password to allow connections to the registry
+ARG USER
+ARG PASSWORD
+
+# Install apache2-utils to generate safe password file with credentials
+RUN apk add --no-cache apache2-utils
+
+# Create the auth file
+RUN mkdir /auth
+RUN htpasswd -b -c -B -C 15 /auth/htpasswd $USER $PASSWORD
+
+# Start the daemon
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/etc/docker/registry/config.yml"]

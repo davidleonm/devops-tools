@@ -1,0 +1,39 @@
+FROM mcr.microsoft.com/dotnet/sdk:5.0.403-bullseye-slim-amd64
+LABEL maintainer="David Leon <david.leon.m@gmail.com>"
+
+# Install needed libraries
+RUN apt-get update
+RUN apt-get upgrade -y
+RUN apt-get install -y \
+    openssh-server \
+    openjdk-11-jre \
+    git \
+    curl \
+    nodejs \
+    npm
+
+# Install Docker
+RUN curl -sSL https://get.docker.com/ | sh
+
+# Copy configuration for sshd
+COPY sshd_config /etc/ssh/sshd_config
+
+# Jenkins user creation and assign to necessary groups
+RUN useradd -ms /bin/bash jenkins
+RUN echo "jenkins:jenkins" | chpasswd
+
+# Add authorized keys for Jenkins user
+COPY jenkins_key.pub /home/jenkins/.ssh/authorized_keys
+
+# Create hosts keys
+RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key
+
+# Configure port for ssh connections
+EXPOSE 2233
+
+# Hack to fix problem with permissions
+RUN mkdir /run/sshd
+RUN chmod 0755 /run/sshd
+
+# Start sshd
+CMD ["/usr/sbin/sshd", "-D"]

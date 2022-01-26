@@ -2,7 +2,8 @@ version: "3.5"
 services:
   jenkins-master:
     depends_on:
-      - jenkins-slave
+      - jenkins-python-slave
+      - jenkins-net-core-slave
       - sonarqube
     container_name: jenkins-master
     image: jenkins/jenkins:lts-alpine
@@ -10,27 +11,55 @@ services:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - jenkins_home:/var/jenkins_home
-  jenkins-slave:
+      - ~/jenkins-data:/var/jenkins_home
+      - '/etc/timezone:/etc/timezone:ro'
+      - '/etc/localtime:/etc/localtime:ro'
+  jenkins-python-slave:
     build:
       context: .
-      dockerfile: Dockerfile
-    container_name: jenkins-slave
+      dockerfile: Dockerfile-python-slave
+    container_name: jenkins-python-slave
     ports:
       - "2233:2233"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - '/etc/timezone:/etc/timezone:ro'
+      - '/etc/localtime:/etc/localtime:ro'
+  jenkins-net-core-slave:
+    build:
+      context: .
+      dockerfile: Dockerfile-net-core-slave
+    container_name: jenkins-net-core-slave
+    ports:
+      - "2244:2233"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
   sonarqube:
     container_name: sonarqube
-    image: sonarqube
+    image: sonarqube:8.9.2-community
     ports:
       - "9000:9000"
     volumes:
-     - sonarqube_data:/opt/sonarqube/data
-     - sonarqube_logs:/opt/sonarqube/logs
-     - sonarqube_extensions:/opt/sonarqube/extensions
-volumes:
-  jenkins_home:
-  sonarqube_data:
-  sonarqube_logs:
-  sonarqube_extensions:  
+     - ~/sonarqube-data:/opt/sonarqube/data
+     - ~/sonarqube-logs:/opt/sonarqube/logs
+     - ~/sonarqube-extensions:/opt/sonarqube/extensions
+     - '/etc/timezone:/etc/timezone:ro'
+     - '/etc/localtime:/etc/localtime:ro'
+  docker-registry:
+    build:
+      context: .
+      dockerfile: Dockerfile-internal-registry
+    container_name: docker-registry
+    ports:
+      - "5000:5000"
+    environment:
+      - REGISTRY_AUTH=htpasswd
+      - REGISTRY_AUTH_HTPASSWD_PATH=/auth/htpasswd
+      - REGISTRY_AUTH_HTPASSWD_REALM="Registry Realm"
+    args:
+      USER=test
+      PASSWORD=test
+    volumes:
+      - ~/docker-registry-data:/var/lib/registry
+      - '/etc/timezone:/etc/timezone:ro'
+      - '/etc/localtime:/etc/localtime:ro'
