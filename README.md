@@ -3,8 +3,8 @@ Environment-Test is my first project intended to learn about some DevOps tools s
 
 
 ## Composition
-* **docker-compose.yml** - Orchestator of the instance. It runs a Jenkins, Python and .NET Core slaves, Sonarqube and Docker registry instances. All nodes use volumes to store persistent data. Note that you would have to configure all the nodes to make them be connected, such as SSH connections, passwords, etc.
-* **Dockerfiles** - Docker file to build the Jenkins slaves and the Docker registry for staging.
+* **docker-compose.yml** - Orchestrator of the instance. It runs a Jenkins, Python and .NET Core slaves, Sonarqube and Docker registry instances. All nodes use volumes to store persistent data. Note that you would have to configure all the nodes to make them be connected, such as SSH connections, passwords, etc.
+* **Dockerfiles** - Docker files to build the Jenkins slaves and the Docker registry for staging.
 * **jenkins_key** - SSH private key to connect Jenkins with the slave. Please use your own file :).
 * **jenkins_key.pub** - SSH Public key which is imported in the slave to allow connections from Jenkins.
 * **LICENSE** - File with the license, basically it says that you can use the code as you wish.
@@ -155,7 +155,7 @@ Configure a shared library using the documentation included [here](https://githu
 * **2.2.1** - Fixed documentation.
 * **2.2.0** - Updated Python container version.
 * **2.1.0** - Improved documentation to show how to put everything in place.
-* **2.0.0** - Splitted Jenkins files from Python solution files.
+* **2.0.0** - Split Jenkins files from Python solution files.
 * **1.0.0** - Updated the pipelines to deploy the solution after merging to master.
 * **First release** - First release with a working suite of DevOps tools and a basic Python solution.
 
