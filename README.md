@@ -148,6 +148,7 @@ Create a 'Pipeline' project whose name **doesn't have spaces**.
 Configure a shared library using the documentation included [here](https://github.com/davidleonm/shared-library).
 
 ## Changelog
+* **2.6.0** - Added dockerfile for helm slave
 * **2.5.0** - Added dockerfile for .NET Core, docker-compose.yml updated to use persistent volumes.
 * **2.4.0** - Added QEMU to build ARM images on x86/x64 hosts.
 * **2.3.0** - Added more packages to be able to install certain Python libraries.
