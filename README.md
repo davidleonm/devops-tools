@@ -1,5 +1,5 @@
-# Environment-Test
-Environment-Test is my first project intended to learn about some DevOps tools such as Jenkins, Sonarqube and Docker.
+# CICD-Pipelines
+CICD-Pipelines is my first project intended to learn about some DevOps tools such as Jenkins, Sonarqube and Docker.
 
 
 ## Composition
