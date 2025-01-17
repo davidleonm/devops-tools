@@ -1,5 +1,5 @@
-# CICD-Pipelines
-CICD-Pipelines is my first project intended to learn about some DevOps tools such as Jenkins, Sonarqube and Docker.
+# DevOps Tools
+DevOps Tools is my first project intended to learn about some DevOps tools such as Jenkins, Sonarqube and Docker.
 
 
 ## Composition
